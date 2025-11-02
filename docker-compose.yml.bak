@@ -25,5 +25,6 @@ services:                                           # Container definitions star
    # restart: unless-stopped                         # Auto-restart policy
 
 volumes:                                            # Named volume declarations
+  codeserver-config:                                # Volume for Code-Server settings
   dotnet-cache:                                     # Volume for .NET package cache 
   workspace-data:                                   # Volume for content

@@ -25,6 +25,6 @@ IN LOCAL FOLDER:
 * `docker-compose logs` 					=> see why something was not working
 * `docker-compose down -v` 					=> remove everything
 * `docker rmi mcp-codernet8claude:v1.0` 	=> DELETE everything
-* `docker-compose build --no-cache` 		=> rebuild without any cashing (if needed)
+* `docker-compose build --no-cache` 		=> rebuild without any cashing
 
 back to post build
