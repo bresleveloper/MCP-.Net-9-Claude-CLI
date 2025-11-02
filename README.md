@@ -39,6 +39,12 @@ back to post build
 
 ## start working
 
+* open port 8080 for coder 8083, 8094, 8105, change in yaml file
+* list ports `docker port mcp-codernet8claude-dev`.
+
+
+### build backend api for something 
+
 * `dotnet new webapi -n TestApiSomething`			=> create an API 
 * `dotnet run --urls http://0.0.0.0:8083`			=> run the api
 * `http://localhost:8083/swagger/index.html`		=> see your api endpoints
@@ -47,4 +53,30 @@ back to post build
 
 
 
-open port 8080 for coder 8083, 8094, 8105, change in yaml file
+### build http base MCP
+
+* `dotnet new webapi -n TestHttpMCPSomething`		=> create an API 
+* `dotnet run --urls http://0.0.0.0:8094`			=> run the api
+* `http://localhost:8094/swagger/index.html`		=> see your api endpoints
+* `http://localhost:8094/mcp/how-is-ari`			=> test your api [current example copy]
+
+
+
+### play with n8n
+
+* `n8nio/n8n`										=> get this from dockerhub
+* `docker volume create n8n_data`  					=> give it a volume to save stuff
+* run it as below									=> read below
+* `http://localhost:5678`							=> browse there and learn n8n
+
+```
+docker run -it --rm \
+ --name n8n \
+ -p 5678:5678 \
+ -v n8n_data:/home/node/.n8n \
+ docker.n8n.io/n8nio/n8n
+```
+
+CMD:
+`docker run -it --rm --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n docker.n8n.io/n8nio/n8n`
+
