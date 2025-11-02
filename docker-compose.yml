@@ -1,0 +1,30 @@
+version: '3.8'                                      # Compose file format version
+
+services:                                           # Container definitions start
+  codernet8claude:                                  # Service name (your choice)
+    build: .                                        # Build from Dockerfile in current dir
+    image: mcp-codernet8claude:v1.0                 # Tag the built image with this name
+    container_name: mcp-codernet8claude-dev              # Container name (instead of random)
+    ports:                                          # Port mappings
+      - "8080:8080"                                 # port for coder
+      - "8083:8083"                                 # for for future MCP out
+    volumes:                                        # Folder/file mappings
+      - ./workspace:/home/coder/workspace/local     # Local folder → container
+      - workspace-data:/home/coder/workspace/volume # volume folder → container 
+                            # Use docker volume inspect workspace-data to see exact path.
+      - codeserver-config:/home/coder/.config       # Named volume
+      - dotnet-cache:/home/coder/.nuget             # Named volume
+    environment:                                    # Environment variables
+      - PASSWORD=123                                # Code-Server password
+      - SUDO_PASSWORD=1234                          # Sudo password inside container
+                                              # Alternative - use .env file:
+                                              #  environment:
+                                              #    - PASSWORD=${CODE_SERVER_PASSWORD}
+                                              # Then create .env file:
+                                              # CODE_SERVER_PASSWORD=yourpassword12
+   # restart: unless-stopped                         # Auto-restart policy
+
+volumes:                                            # Named volume declarations
+  codeserver-config:                                # Volume for Code-Server settings
+  dotnet-cache:                                     # Volume for .NET package cache 
+  workspace-data:                                   # Volume for content
